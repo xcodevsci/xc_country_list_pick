@@ -2,7 +2,7 @@ name: xc_country_list_pick
 description: Amazing look for Android and ios. Country list pick.
 version: 1.0.1
 author: xcodevs TINA K. Arouna <xcodevs.startup@gmail.com>
-homepage: 
+homepage: https://github.com/xcodevsci/xc_country_list_pick.git
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
