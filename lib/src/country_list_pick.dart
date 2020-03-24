@@ -1,4 +1,3 @@
-
 import '../support/code_country.dart';
 import '../support/code_countrys.dart';
 import 'package:flutter/cupertino.dart';
@@ -8,16 +7,15 @@ export '../support/code_country.dart';
 class CountryListPick extends StatefulWidget {
   CountryListPick(
       {this.onChanged,
-        this.isShowFlag,
-        this.isDownIcon,
-        this.isShowTitle,
-        this.initialSelection,
-        this.fontFamily,
-        this.borderRadius,
-        this.background,
-        this.textColor,
-        this.textSize
-      });
+      this.isShowFlag,
+      this.isDownIcon,
+      this.isShowTitle,
+      this.initialSelection,
+      this.fontFamily,
+      this.borderRadius,
+      this.background,
+      this.textColor,
+      this.textSize});
   final bool isShowTitle;
   final bool isShowFlag;
   final bool isDownIcon;
@@ -35,11 +33,12 @@ class CountryListPick extends StatefulWidget {
 
     List<CountryCode> elements = jsonList
         .map((s) => CountryCode(
-      name: s['name'],
-      code: s['code'],
-      dialCode: s['dial_code'],
-      flagUri: 'assets/flags/${s['code'].toLowerCase()}.png',
-    )).toList();
+              name: s['name'],
+              code: s['code'],
+              dialCode: s['dial_code'],
+              flagUri: 'assets/flags/${s['code'].toLowerCase()}.png',
+            ))
+        .toList();
     elements.sort((a, b) {
       return a.name.toString().compareTo(b.name.toString());
     });
@@ -59,8 +58,8 @@ class _CountryListPickState extends State<CountryListPick> {
   void initState() {
     if (widget.initialSelection != null) {
       selectedItem = elements.firstWhere(
-              (e) =>
-          (e.code.toUpperCase() == widget.initialSelection.toUpperCase()) ||
+          (e) =>
+              (e.code.toUpperCase() == widget.initialSelection.toUpperCase()) ||
               (e.dialCode == widget.initialSelection.toString()),
           orElse: () => elements[0]);
     } else {
@@ -85,24 +84,23 @@ class _CountryListPickState extends State<CountryListPick> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(left: 8.0,top: 0.0,right: 8.0,bottom: 0.0),
-      decoration: BoxDecoration(
-          color: widget.background,
-          borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(widget.borderRadius),
-              topRight: Radius.circular(widget.borderRadius))),
-      child: MediaQuery(
-        data: const MediaQueryData(
-          // The native iOS picker's text scaling is fixed, so we will also fix it
-          // as well in our picker.
-          textScaleFactor: 1.0,
-        ),
-        child: Flex(
-          direction: Axis.vertical,
-
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: <Widget>[
-            /*Flexible(
+        padding: EdgeInsets.only(left: 8.0, top: 0.0, right: 8.0, bottom: 0.0),
+        decoration: BoxDecoration(
+            color: widget.background,
+            borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(widget.borderRadius),
+                topRight: Radius.circular(widget.borderRadius))),
+        child: MediaQuery(
+          data: const MediaQueryData(
+            // The native iOS picker's text scaling is fixed, so we will also fix it
+            // as well in our picker.
+            textScaleFactor: 1.0,
+          ),
+          child: Flex(
+            direction: Axis.vertical,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              /*Flexible(
               flex: 1,
               child: Padding(
                 padding: EdgeInsets.only(top: 16.0),
@@ -131,40 +129,47 @@ class _CountryListPickState extends State<CountryListPick> {
                 ),
               )
             ),*/
-            Flexible(
-              flex: 6,
-              child: CupertinoPicker(
-                  scrollController: FixedExtentScrollController(initialItem:1,),
-                  itemExtent: 50,
-                  backgroundColor: Colors.transparent,
-                  useMagnifier: true,
-                  magnification: 1.1,
-                  //looping: true,
-                  onSelectedItemChanged: (value){
-                    //print(elements[value].name);
-                    selectedItem = elements[value];
-                    setState(() {
-
-                    });
-                  },
-                  children: elements.map((CountryCode countryCode){
-                    return Container(
-                      color: Colors.transparent,
-                      alignment: Alignment.centerRight,
-                      child: ListTile(
-                        leading: Image.asset(
-                          countryCode.flagUri,
-                          width: 32.0,
+              Flexible(
+                flex: 6,
+                child: CupertinoPicker(
+                    scrollController: FixedExtentScrollController(
+                      initialItem: 1,
+                    ),
+                    itemExtent: 50,
+                    backgroundColor: Colors.transparent,
+                    useMagnifier: true,
+                    magnification: 1.1,
+                    //looping: true,
+                    onSelectedItemChanged: (value) {
+                      //print(elements[value].name);
+                      selectedItem = elements[value];
+                      setState(() {});
+                    },
+                    children: elements.map((CountryCode countryCode) {
+                      return Container(
+                        color: Colors.transparent,
+                        alignment: Alignment.centerRight,
+                        child: ListTile(
+                          leading: Image.asset(
+                            countryCode.flagUri,
+                            width: 32.0,
+                          ),
+                          title: Text(
+                              widget.isShowTitle
+                                  ? countryCode.toCountryStringOnly()
+                                  : countryCode.toString(),
+                              style: TextStyle(
+                                  fontSize: widget.textSize,
+                                  fontFamily: "${widget.fontFamily}",
+                                  color: widget.textColor)),
+                          trailing: selectedItem.code == countryCode.code
+                              ? Icon(Icons.check, color: Colors.green)
+                              : null,
+                          //subtitle: Text(countryCode.toString()),
                         ),
-                        title: Text(widget.isShowTitle
-                            ? countryCode.toCountryStringOnly()
-                            : countryCode.toString(),style: TextStyle(fontSize: widget.textSize,fontFamily: "${widget.fontFamily}",color: widget.textColor)),
-                        trailing: selectedItem.code == countryCode.code ? Icon(Icons.check, color: Colors.green) : null,
-                        //subtitle: Text(countryCode.toString()),
-                      ),
-                    );
+                      );
 
-                    /*Flex(
+                      /*Flex(
                 direction: Axis.horizontal,
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
@@ -188,26 +193,27 @@ class _CountryListPickState extends State<CountryListPick> {
                   ),
                 ],
               )*/
-                  }).toList()
+                    }).toList()),
               ),
-            ),
-            Flexible(
-              flex: 1,
-              child: Padding(
-                padding: EdgeInsets.only(bottom: 0.0),
-                child: RaisedButton(
-                  child: Text("OK",style: TextStyle(color: widget.textColor),),
-                  color: Colors.blue,
-                  onPressed: (){
-                    widget.onChanged(selectedItem);
-                    Navigator.of(context).pop();
-                  },
+              Flexible(
+                flex: 1,
+                child: Padding(
+                  padding: EdgeInsets.only(bottom: 0.0),
+                  child: RaisedButton(
+                    child: Text(
+                      "OK",
+                      style: TextStyle(color: widget.textColor),
+                    ),
+                    color: Colors.blue,
+                    onPressed: () {
+                      widget.onChanged(selectedItem);
+                      Navigator.of(context).pop();
+                    },
+                  ),
                 ),
-              ),
-            )
-          ],
-        ),
-      )
-    );
+              )
+            ],
+          ),
+        ));
   }
 }

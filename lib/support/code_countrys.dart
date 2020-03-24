@@ -79,7 +79,11 @@ List<Map> codes = [
   {"name": "France", "code": "FR", "dial_code": "+33"},
   {"name": "Guyane française", "code": "GF", "dial_code": "+594"},
   {"name": "Polynésie française", "code": "PF", "dial_code": "+689"},
-  {"name": "Territoire des Terres australes et antarctiques fr", "code": "TF", "dial_code": "+262"},
+  {
+    "name": "Territoire des Terres australes et antarctiques fr",
+    "code": "TF",
+    "dial_code": "+262"
+  },
   {"name": "Gabon", "code": "GA", "dial_code": "+241"},
   {"name": "Gambia", "code": "GM", "dial_code": "+220"},
   {"name": "საქართველო", "code": "GE", "dial_code": "+995"},
