@@ -56,6 +56,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     onChanged: (value) async{
                       print(value.code);
                       _paysSelected = value.name;
+                      print(value.lang);
                       setState((){});
                     }
                 );

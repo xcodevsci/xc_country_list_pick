@@ -37,6 +37,7 @@ class CountryListPick extends StatefulWidget {
               code: s['code'],
               dialCode: s['dial_code'],
               flagUri: 'assets/flags/${s['code'].toLowerCase()}.png',
+              lang: s['lang']
             ))
         .toList();
     elements.sort((a, b) {
@@ -143,6 +144,7 @@ class _CountryListPickState extends State<CountryListPick> {
                     onSelectedItemChanged: (value) {
                       //print(elements[value].name);
                       selectedItem = elements[value];
+                      widget.onChanged(selectedItem);
                       setState(() {});
                     },
                     children: elements.map((CountryCode countryCode) {

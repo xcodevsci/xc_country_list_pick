@@ -17,7 +17,10 @@ class CountryCode {
   /// the dial code (+39,+93..)
   String dialCode;
 
-  CountryCode({this.name, this.flagUri, this.code, this.dialCode});
+  /// the country language (fr,en,...)
+  String lang;
+
+  CountryCode({this.name, this.flagUri, this.code, this.dialCode, this.lang});
 
   @override
   String toString() => "$dialCode";
@@ -25,4 +28,6 @@ class CountryCode {
   String toLongString() => "$dialCode $name";
 
   String toCountryStringOnly() => '$name';
+
+  String tolang() => '$lang';
 }
