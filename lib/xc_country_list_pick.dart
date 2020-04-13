@@ -5,16 +5,19 @@ import 'package:flutter/material.dart';
 
 class XCupertinoCountryListPick {
   static show(BuildContext context,
-      {onChanged,
-      isShowFlag,
-      isDownIcon,
-      isShowTitle,
-      initialSelection,
-      String fontFamily,
-      double borderRadius,
-      Color background,
-      Color textColor,
-      double textSize}) async {
+      {
+        onChanged,
+        isShowFlag,
+        isDownIcon,
+        isShowTitle,
+        initialSelection,
+        String fontFamily,
+        double borderRadius,
+        Color background,
+        Color textColor,
+        double textSize,
+        int initialItem = 1
+      }) async {
     showModalBottomSheet(
         backgroundColor: Colors.transparent,
         context: context,
@@ -30,6 +33,7 @@ class XCupertinoCountryListPick {
             textColor: textColor,
             fontFamily: fontFamily,
             textSize: textSize,
+            initialItem: initialItem,
           );
         });
   }

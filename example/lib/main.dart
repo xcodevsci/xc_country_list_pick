@@ -53,6 +53,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     //textSize: 25.0,
                     background: Colors.teal,//Colors.red[300],
                     borderRadius: 16,
+                    initialItem: 4,
                     onChanged: (value) async{
                       print(value.code);
                       _paysSelected = value.name;
