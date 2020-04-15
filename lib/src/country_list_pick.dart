@@ -188,7 +188,7 @@ class _CountryListPickState extends State<CountryListPick> {
           child:
           Stack(
             children: <Widget>[
-              Align(
+              /*Align(
                 alignment: Alignment.topRight,
                 child: Flex(
                   direction: Axis.horizontal,
@@ -241,7 +241,7 @@ class _CountryListPickState extends State<CountryListPick> {
                     )
                   ],
                 ),
-              ),
+              ),*/
               Align(
                 alignment: Alignment.topLeft,
                 child: Padding(
